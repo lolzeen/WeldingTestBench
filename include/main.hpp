@@ -61,6 +61,9 @@ const uint8_t ROLLBACK_DELAY = 200 // ms
 const uint8_t DISPLAY_REFRESH_RATE = 100 // ms
 const uint8_t DISPLAY_REFRESH_RATE_DURING_PROCESS = 1000 // ms
 
+/* ---- ProcessParameters  ----- */
+const uint8_t ARC_VOLTAGE_SAMPLING_RATE = 10 // ms
+
 /* ----   ----- */
 
 #endif // MAIN_H
