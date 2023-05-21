@@ -26,6 +26,10 @@ void setup() {
   DisplayController displayController = &DisplayController::getInstance();
   displayController.setRefreshRate(DISPLAY_REFRESH_RATE, DISPLAY_REFRESH_RATE_DURING_PROCESS);
   displayController.firstTimeSetup();
+
+  versatile_encoder = new Versatile_RotaryEncoder(ENCODER_PIN_A, ENCODER_PIN_B, BUTTON_PIN);
+  versatile_encoder->setHandleRotate(handleRotate);
+  versatile_encoder->setHandlePress(handlePress);
 }
 
 void loop() {
@@ -35,6 +39,24 @@ void loop() {
   processController.monitorProcess(); // TODO: check process parameters: endswitches and arc length control
   // ProcessController.run();
   // TODO: process user input
+  if (versatile_encoder->ReadEncoder()) {
+    // Do something here whenever an encoder/button action is read
+  }
   displayController.updateDisplay(); // TODO: update display every XX ms
 }
 
+void handleRotate(int8_t rotation) {
+  if (displayController.getAdjustMenu()) {
+    displayController.adjustMenu();
+  }
+  else if (rotation > 0) {
+    Serial.println("Right");
+    displayController.nextWindow();
+  } else if (rotation < 0) {
+    Serial.println("Left");
+    displayController.previousWindow();
+  }
+}
+void handlePress() {
+  displayController.buttonWindow();
+}

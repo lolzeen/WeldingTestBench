@@ -12,6 +12,7 @@
 #include "DriverPins.hpp"
 #include "DisplayPins.hpp"
 #include "InputPins.hpp"
+#include "Versatile_RotaryEncoder.h"
 
 /* ----- Driver Pins ----- */
 // azul = EN, verde = DIR, amarelo = STEP
